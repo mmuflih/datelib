@@ -9,6 +9,7 @@ package datelib
 
 const YMD = "2006-01-02"
 const YMD_HMS = "2006-01-02 15:04:05"
+const YMD_HM = "2006-01-02 15:04"
 const YMD_HMS_TZ = "2006-01-02 15:04:05-0700"
 const DMY = "02 January 2006"
 const DMY_HMS = "02 January 2006 15:04:05"

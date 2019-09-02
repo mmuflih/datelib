@@ -1,6 +1,9 @@
 package datelib
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 /**
  * Created by Muhammad Muflih Kholidin
@@ -36,4 +39,13 @@ func SubYear(date time.Time, count int) time.Time {
 func LastDate(date time.Time) time.Time {
 	d := date.AddDate(0, 1, 0)
 	return d.AddDate(0, 0, -1)
+}
+
+func ParseTZ(format, date, tz string) time.Time {
+	t, err := time.Parse(format + "-0700", date + tz)
+	if err != nil {
+		fmt.Println("Error create date with timezone")
+		return time.Now()
+	}
+	return t
 }

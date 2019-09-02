@@ -52,3 +52,8 @@ func NewTZ7() time.Time{
 	return t
 }
 
+func NewLastDate() time.Time {
+	now := time.Now()
+	date := now.AddDate(0, 1, 0)
+	return date.AddDate(0, 0, -1)
+}

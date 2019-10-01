@@ -1,6 +1,8 @@
 package datelib
 
-import "strings"
+import (
+	"strings"
+)
 
 /**
  * Created by Muhammad Muflih Kholidin
@@ -10,6 +12,9 @@ import "strings"
 **/
 
 func ToYMD(date string) string {
+	if len(date) < 4 {
+		return date
+	}
 	if strings.Contains(date[:4], "-") {
 		dates := strings.Split(date, "-")
 		return dates[2] + "-" + dates[1] + "-" + dates[0]
@@ -18,6 +23,9 @@ func ToYMD(date string) string {
 }
 
 func ToDMY(date string) string {
+	if len(date) < 4 {
+		return date
+	}
 	if !strings.Contains(date[:4], "-") {
 		dates := strings.Split(date, "-")
 		return dates[2] + "-" + dates[1] + "-" + dates[0]
@@ -26,6 +34,9 @@ func ToDMY(date string) string {
 }
 
 func ToYMDDateTime(dateTime string) string {
+	if len(dateTime) < 4 {
+		return dateTime
+	}
 	if strings.Contains(dateTime[:4], "-") {
 		dts := strings.Split(dateTime , " ")
 		dates := strings.Split(dts[0], "-")
@@ -35,6 +46,9 @@ func ToYMDDateTime(dateTime string) string {
 }
 
 func ToDMYDateTime(dateTime string) string {
+	if len(dateTime) < 4 {
+		return dateTime
+	}
 	if !strings.Contains(dateTime[:4], "-") {
 		dts := strings.Split(dateTime , " ")
 		dates := strings.Split(dts[0], "-")

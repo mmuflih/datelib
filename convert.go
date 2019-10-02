@@ -40,7 +40,7 @@ func ToYMDDateTime(dateTime string) string {
 	if strings.Contains(dateTime[:4], "-") {
 		dts := strings.Split(dateTime , " ")
 		dates := strings.Split(dts[0], "-")
-		return dates[2] + "-" + dates[1] + "-" + dates[0]
+		return dates[2] + "-" + dates[1] + "-" + dates[0] + " " + dts[1]
 	}
 	return dateTime
 }
@@ -52,7 +52,7 @@ func ToDMYDateTime(dateTime string) string {
 	if !strings.Contains(dateTime[:4], "-") {
 		dts := strings.Split(dateTime , " ")
 		dates := strings.Split(dts[0], "-")
-		return dates[2] + "-" + dates[1] + "-" + dates[0]
+		return dates[2] + "-" + dates[1] + "-" + dates[0] + " " + dts[1]
 	}
 	return dateTime
 }

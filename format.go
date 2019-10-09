@@ -1,5 +1,7 @@
 package datelib
 
+import "time"
+
 /*
  * Created by Muhammad Muflih Kholidin
  * https://github.com/mmuflih
@@ -17,3 +19,4 @@ const DMY_HMS = "02 January 2006 15:04:05"
 const DMY_HM = "02 January 2006 15:04"
 const HMS = "15:01:02"
 const HM = "15:01"
+const ISO1 = time.RFC3339

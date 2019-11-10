@@ -42,10 +42,18 @@ func LastDate(date time.Time) time.Time {
 }
 
 func ParseTZ(format, date, tz string) time.Time {
-	t, err := time.Parse(format + "-0700", date + tz)
+	t, err := time.Parse(format+"-0700", date+tz)
 	if err != nil {
 		fmt.Println("Error create date with timezone")
 		return time.Now()
 	}
 	return t
+}
+
+func Diff(t1, t2 time.Time) time.Duration {
+	diff := t1.Sub(t2)
+	if diff.Seconds() < 0 {
+		return diff * -1
+	}
+	return diff
 }

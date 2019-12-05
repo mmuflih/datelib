@@ -2,6 +2,9 @@ package datelib
 
 import (
 	"database/sql/driver"
+	"encoding/json"
+	"log"
+	"strings"
 	"time"
 )
 
@@ -28,4 +31,34 @@ func (nt NullTime) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return nt.Time, nil
+}
+
+func (nt *NullTime) UnmarshalJSON(b []byte) error {
+
+	s := strings.Trim(string(b), "\"")
+	if s == "" || s == "null" {
+		return nil
+	}
+	log.Println(s)
+
+	t, err := time.Parse(YMD, s)
+	log.Println(t, err)
+
+	if err != nil {
+		print(err)
+		t, err = time.Parse(ISO1, s)
+		if err != nil {
+			return err
+		}
+	}
+
+	newNT := new(NullTime)
+	newNT.Time = t
+	newNT.Valid = true
+	*nt = *newNT
+	return nil
+}
+
+func (nt NullTime) MarshalJSON() ([]byte, error) {
+	return json.Marshal(nt)
 }

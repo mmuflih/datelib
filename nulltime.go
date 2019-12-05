@@ -3,7 +3,6 @@ package datelib
 import (
 	"database/sql/driver"
 	"encoding/json"
-	"log"
 	"strings"
 	"time"
 )
@@ -39,11 +38,8 @@ func (nt *NullTime) UnmarshalJSON(b []byte) error {
 	if s == "" || s == "null" {
 		return nil
 	}
-	log.Println(s)
 
 	t, err := time.Parse(YMD, s)
-	log.Println(t, err)
-
 	if err != nil {
 		print(err)
 		t, err = time.Parse(ISO1, s)
@@ -52,13 +48,17 @@ func (nt *NullTime) UnmarshalJSON(b []byte) error {
 		}
 	}
 
-	newNT := new(NullTime)
-	newNT.Time = t
-	newNT.Valid = true
-	*nt = *newNT
+	nt.Time = t
+	nt.Valid = true
 	return nil
 }
 
 func (nt NullTime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(nt)
+	return json.Marshal(&struct {
+		Time  string `json:"time"`
+		Valid bool   `json:"valid"`
+	}{
+		Time:  nt.Time.Format(time.RFC3339),
+		Valid: nt.Valid,
+	})
 }

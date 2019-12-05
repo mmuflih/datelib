@@ -34,7 +34,22 @@ func TestUnmarshalYMD(t *testing.T) {
 		t.Errorf("Expected time %s, but got %s\n", expectedNT.Time.String(), ntt.BirthDate.Time.String())
 	}
 	if ntt.BirthDate.Valid != expectedNT.Valid {
-		t.Errorf("Expected %t bug got %t\n", expectedNT.Valid, ntt.BirthDate.Valid)
+		t.Errorf("Expected %t but got %t\n", expectedNT.Valid, ntt.BirthDate.Valid)
+	}
+}
+
+func TestUnmarshalEmpty(t *testing.T) {
+	// PREPARATION
+	dummy := `{
+    }`
+
+	// ACTION
+	var ntt NTtest
+	json.Unmarshal([]byte(dummy), &ntt)
+
+	// ASSERTION
+	if ntt.BirthDate.Valid {
+		t.Errorf("Expected %t but got %t\n", false, ntt.BirthDate.Valid)
 	}
 }
 
@@ -60,6 +75,6 @@ func TestUnmarshalISO1(t *testing.T) {
 		t.Errorf("Expected time %s, but got %s\n", expectedNT.Time.String(), ntt.BirthDate.Time.String())
 	}
 	if ntt.BirthDate.Valid != expectedNT.Valid {
-		t.Errorf("Expected %t bug got %t\n", expectedNT.Valid, ntt.BirthDate.Valid)
+		t.Errorf("Expected %t but got %t\n", expectedNT.Valid, ntt.BirthDate.Valid)
 	}
 }

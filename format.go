@@ -10,8 +10,11 @@ import "time"
  */
 
 const YMD = "2006-01-02"
+const YMD_WS = "20060102"
 const YMD_HMS = "2006-01-02 15:04:05"
-var YMD_HMSM string = "20060102150405"
+
+var YMD_HMS_WS = "20060102150405"
+
 const YMD_HM = "2006-01-02 15:04"
 const YMD_HMS_TZ = "2006-01-02 15:04:05-0700"
 const DMY = "02 January 2006"

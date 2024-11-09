@@ -29,6 +29,9 @@ const HMS = "15:04:05"
 const HM = "15:04"
 const ISO1 = time.RFC3339
 
+const DD_MM_YYYY = "02-Jan-2006"
+const D_M_Y = "02-01-2006"
+
 type RomanNumber struct {
 	Year  string
 	Month string
